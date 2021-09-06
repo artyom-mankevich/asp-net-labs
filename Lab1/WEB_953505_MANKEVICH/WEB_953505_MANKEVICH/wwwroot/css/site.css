@@ -1,0 +1,20 @@
+﻿header, footer {
+    background-color: #343a40;
+}
+
+.nav-color {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#sendButton {
+    background-color: #1697ab;
+    border-color: #1697ab;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+}

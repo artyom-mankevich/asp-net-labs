@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using WEB_953505_MANKEVICH.Models;
 
@@ -20,6 +18,12 @@ namespace WEB_953505_MANKEVICH.Controllers
 
         public IActionResult Index()
         {
+            IEnumerable<ListDemo> list = new List<ListDemo>
+            {
+                new ListDemo { ListItemText = "item 1", ListItemValue = 1},
+                new ListDemo { ListItemText = "item 2", ListItemValue = 2}
+            };
+            ViewBag.demoList = new SelectList(list, "ListItemValue", "ListItemText");
             ViewData["lab2text"] = "Лабораторная работа №2";
             return View();
         }

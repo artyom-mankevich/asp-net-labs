@@ -18,3 +18,7 @@ footer {
     right: 0;
     height: 60px;
 }
+
+#formHeader {
+    padding-top: .5em;
+}

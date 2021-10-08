@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -12,9 +13,8 @@ namespace WEB_953505_MANKEVICH.Data
             RoleManager<IdentityRole> roleManager)
 
         {
-            // создать БД, если она еще не создана
             await context.Database.EnsureCreatedAsync();
-            // проверка наличия ролей
+
             if (!context.Roles.Any())
             {
                 var roleAdmin = new IdentityRole
@@ -22,31 +22,76 @@ namespace WEB_953505_MANKEVICH.Data
                     Name = "admin",
                     NormalizedName = "admin"
                 };
-                // создать роль admin
 
                 await roleManager.CreateAsync(roleAdmin);
             }
 
-            // проверка наличия пользователей
             if (!context.Users.Any())
             {
-                // создать пользователя user@mail.ru
                 var user = new ApplicationUser
                 {
                     Email = "user@mail.ru",
                     UserName = "user@mail.ru"
                 };
                 await userManager.CreateAsync(user, "123456");
-                // создать пользователя admin@mail.ru
+
                 var admin = new ApplicationUser
                 {
                     Email = "admin@mail.ru",
                     UserName = "admin@mail.ru"
                 };
                 await userManager.CreateAsync(admin, "123456");
-                // назначить роль admin
+
                 admin = await userManager.FindByEmailAsync("admin@mail.ru");
                 await userManager.AddToRoleAsync(admin, "admin");
+            }
+
+            if (!context.CarGroups.Any())
+            {
+                context.CarGroups.AddRange(
+                    new List<CarGroup>
+                    {
+                        new CarGroup {GroupName = "Купе"},
+                        new CarGroup {GroupName = "Седан"},
+                        new CarGroup {GroupName = "Универсал"},
+                        new CarGroup {GroupName = "Кабриолет"},
+                        new CarGroup {GroupName = "Хэтчбек"}
+                    });
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.Cars.Any())
+            {
+                context.Cars.AddRange(
+                    new List<Car>
+                    {
+                        new()
+                        {
+                            ModelName = "4 series", ManufacturerName = "BMW",
+                            CarGroupId = 1, Image = "BMW4.jpeg"
+                        },
+                        new()
+                        {
+                            ModelName = "A6", ManufacturerName = "Audi",
+                            CarGroupId = 2, Image = "AudiA6.jpeg"
+                        },
+                        new()
+                        {
+                            ModelName = "Passat", ManufacturerName = "Volkswagen",
+                            CarGroupId = 3, Image = "VWPassat.jpeg"
+                        },
+                        new()
+                        {
+                            ModelName = "SL", ManufacturerName = "Mercedes-Benz",
+                            CarGroupId = 4, Image = "MBSL.jpeg"
+                        },
+                        new()
+                        {
+                            ModelName = "Civic", ManufacturerName = "Honda",
+                            CarGroupId = 5, Image = "HondaCivic.jpeg"
+                        }
+                    });
+                await context.SaveChangesAsync();
             }
         }
     }

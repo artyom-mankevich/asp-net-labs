@@ -13,6 +13,8 @@ namespace WEB_953505_MANKEVICH.Data
             : base(options)
         {
         }
-        public DbSet<WEB_953505_MANKEVICH.Entities.Car> Car { get; set; }
+
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarGroup> CarGroups { get; set; }
     }
 }

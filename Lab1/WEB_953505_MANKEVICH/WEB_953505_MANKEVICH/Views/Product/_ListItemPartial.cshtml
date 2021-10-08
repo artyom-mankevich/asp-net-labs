@@ -11,9 +11,6 @@
         <p class="card-text">
             @Model.ManufacturerName
         </p>
-        <div class="card-text badge badge-secondary">
-            <h6>Класс: @Model.Group.GroupName</h6>
-        </div>
         @{
             var request = ViewContext.HttpContext.Request;
             var returnUrl = request.Path +

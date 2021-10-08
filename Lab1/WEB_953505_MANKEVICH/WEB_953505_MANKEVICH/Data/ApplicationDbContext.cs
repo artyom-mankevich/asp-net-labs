@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,5 +13,6 @@ namespace WEB_953505_MANKEVICH.Data
             : base(options)
         {
         }
+        public DbSet<WEB_953505_MANKEVICH.Entities.Car> Car { get; set; }
     }
 }

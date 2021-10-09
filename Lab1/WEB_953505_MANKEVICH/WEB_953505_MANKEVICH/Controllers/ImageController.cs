@@ -25,7 +25,7 @@ namespace WEB_953505_MANKEVICH.Controllers
             {
                 return File(user.AvatarImage, "image/...");
             }
-            var avatarPath = "/Images/anonymous.png";
+            var avatarPath = "/images/avatar.jpeg";
             return File(_env.WebRootFileProvider
                 .GetFileInfo(avatarPath)
                 .CreateReadStream(), "image/...");

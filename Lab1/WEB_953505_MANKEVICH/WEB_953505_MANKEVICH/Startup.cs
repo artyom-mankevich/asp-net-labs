@@ -1,12 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using WEB_953505_MANKEVICH.Data;
 using WEB_953505_MANKEVICH.Entities;
+using WEB_953505_MANKEVICH.Extensions;
+using WEB_953505_MANKEVICH.Models;
+using WEB_953505_MANKEVICH.Services;
 
 namespace WEB_953505_MANKEVICH
 {
@@ -47,6 +52,15 @@ namespace WEB_953505_MANKEVICH
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
             });
+            
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt =>
+            {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<Cart>(CartService.GetCart);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +68,10 @@ namespace WEB_953505_MANKEVICH
             IWebHostEnvironment env,
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ILoggerFactory logger)
         {
+            logger.AddFile("Logs/log-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -76,6 +92,8 @@ namespace WEB_953505_MANKEVICH
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
+            app.UseFileLogging();
 
             app.UseEndpoints(endpoints =>
             {

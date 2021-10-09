@@ -1,0 +1,47 @@
+@model IEnumerable<WEB_953505_MANKEVICH.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Корзина</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/images/@item.Car.Image" alt="No image"
+                     width="100"/>
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Car.ManufacturerName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Car.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <a asp-controller="Cart"
+                   asp-action="Delete"
+                   asp-route-id="@item.Car.CarId"
+                   class="btn btn-outline-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

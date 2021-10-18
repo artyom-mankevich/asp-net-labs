@@ -8,8 +8,8 @@ namespace WEB_953505_MANKEVICH.Controllers
 {
     public class ImageController : Controller
     {
-        UserManager<ApplicationUser> _userManager;
-        IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment _env;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public ImageController(UserManager<ApplicationUser>
             userManager, IWebHostEnvironment env)
@@ -21,10 +21,7 @@ namespace WEB_953505_MANKEVICH.Controllers
         public async Task<FileResult> GetAvatar()
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user.AvatarImage != null)
-            {
-                return File(user.AvatarImage, "image/...");
-            }
+            if (user.AvatarImage != null) return File(user.AvatarImage, "image/...");
             var avatarPath = "/images/avatar.jpeg";
             return File(_env.WebRootFileProvider
                 .GetFileInfo(avatarPath)

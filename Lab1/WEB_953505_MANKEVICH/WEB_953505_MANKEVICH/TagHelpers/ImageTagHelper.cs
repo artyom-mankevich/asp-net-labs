@@ -3,17 +3,18 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WEB_953505_MANKEVICH.TagHelpers
 {
-    [HtmlTargetElement(tag: "img", Attributes = "img-action, img-controller")]
+    [HtmlTargetElement("img", Attributes = "img-action, img-controller")]
     public class ImageTagHelper : TagHelper
     {
-        public string ImgAction { get; set; }
-        public string ImgController { get; set; }
         private readonly LinkGenerator _linkGenerator;
 
         public ImageTagHelper(LinkGenerator linkGenerator)
         {
             _linkGenerator = linkGenerator;
         }
+
+        public string ImgAction { get; set; }
+        public string ImgController { get; set; }
 
         public override void Process(TagHelperContext context,
             TagHelperOutput output)

@@ -10,9 +10,9 @@ namespace WEB_953505_MANKEVICH.Services
 {
     public class CartService : Cart
     {
-        private string sessionKey = "cart";
+        private readonly string sessionKey = "cart";
 
-        [JsonIgnore] ISession Session { get; set; }
+        [JsonIgnore] private ISession Session { get; set; }
 
         public static Cart GetCart(IServiceProvider sp)
         {
@@ -24,23 +24,23 @@ namespace WEB_953505_MANKEVICH.Services
             cart.Session = session;
             return cart;
         }
-        
+
         public override void AddToCart(Car car)
         {
             base.AddToCart(car);
-            Session?.Set<CartService>(sessionKey, this);
+            Session?.Set(sessionKey, this);
         }
 
         public override void RemoveFromCart(int id)
         {
             base.RemoveFromCart(id);
-            Session?.Set<CartService>(sessionKey, this);
+            Session?.Set(sessionKey, this);
         }
 
         public override void ClearAll()
         {
             base.ClearAll();
-            Session?.Set<CartService>(sessionKey, this);
+            Session?.Set(sessionKey, this);
         }
     }
 }

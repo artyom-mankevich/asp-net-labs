@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using WEB_953505_MANKEVICH.Data;
 using WEB_953505_MANKEVICH.Entities;
 using WEB_953505_MANKEVICH.Extensions;
-using WEB_953505_MANKEVICH.Models;
 using WEB_953505_MANKEVICH.Services;
 
 namespace WEB_953505_MANKEVICH
@@ -49,10 +48,10 @@ namespace WEB_953505_MANKEVICH
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = $"/Identity/Account/Login";
-                options.LogoutPath = $"/Identity/Account/Logout";
+                options.LoginPath = "/Identity/Account/Login";
+                options.LogoutPath = "/Identity/Account/Logout";
             });
-            
+
             services.AddDistributedMemoryCache();
             services.AddSession(opt =>
             {
@@ -60,7 +59,7 @@ namespace WEB_953505_MANKEVICH
                 opt.Cookie.IsEssential = true;
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<Cart>(CartService.GetCart);
+            services.AddScoped(CartService.GetCart);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,8 +97,8 @@ namespace WEB_953505_MANKEVICH
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

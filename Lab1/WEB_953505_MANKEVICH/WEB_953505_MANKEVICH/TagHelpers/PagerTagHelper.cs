@@ -8,6 +8,11 @@ namespace WEB_953505_MANKEVICH.TagHelpers
     {
         private LinkGenerator _linkGenerator;
 
+        public PagerTagHelper(LinkGenerator linkGenerator)
+        {
+            _linkGenerator = linkGenerator;
+        }
+
         public int PageCurrent { get; set; }
 
         public int PageTotal { get; set; }
@@ -18,11 +23,6 @@ namespace WEB_953505_MANKEVICH.TagHelpers
 
         public string Controller { get; set; }
         public int? GroupId { get; set; }
-
-        public PagerTagHelper(LinkGenerator linkGenerator)
-        {
-            _linkGenerator = linkGenerator;
-        }
 
         public override void Process(TagHelperContext context,
             TagHelperOutput output)
@@ -43,9 +43,9 @@ namespace WEB_953505_MANKEVICH.TagHelpers
                             : GroupId
                     });
                 var item = GetPagerItem(
-                    url: url, text: i.ToString(),
-                    active: i == PageCurrent,
-                    disabled: i == PageCurrent
+                    url, i.ToString(),
+                    i == PageCurrent,
+                    i == PageCurrent
                 );
                 ulTag.InnerHtml.AppendHtml(item);
             }

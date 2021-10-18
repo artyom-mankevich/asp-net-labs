@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -24,18 +22,12 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Car = await _context.Cars
                 .Include(c => c.Group).FirstOrDefaultAsync(m => m.CarId == id);
 
-            if (Car == null)
-            {
-                return NotFound();
-            }
+            if (Car == null) return NotFound();
 
             ViewData["CarGroupId"] = new SelectList(_context.CarGroups, "CarGroupId", "GroupName");
             return Page();
@@ -45,10 +37,7 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(Car).State = EntityState.Modified;
 
@@ -59,13 +48,8 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
             catch (DbUpdateConcurrencyException)
             {
                 if (!CarExists(Car.CarId))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

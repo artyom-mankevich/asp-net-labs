@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,7 +12,7 @@ namespace WEB_953505_MANKEVICH.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly int _pageSize;
-        private ILogger _logger; 
+        private readonly ILogger _logger;
 
         public ProductController(ApplicationDbContext context, ILogger<ProductController> logger)
         {
@@ -34,10 +33,7 @@ namespace WEB_953505_MANKEVICH.Controllers
 
             var model = ListViewModel<Car>.GetModel(carsFiltered, pageNo,
                 _pageSize);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_listpartial", model);
-            }
+            if (Request.IsAjaxRequest()) return PartialView("_listpartial", model);
 
             return View(model);
         }

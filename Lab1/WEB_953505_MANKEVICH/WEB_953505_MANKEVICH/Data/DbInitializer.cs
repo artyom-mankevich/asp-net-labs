@@ -51,11 +51,11 @@ namespace WEB_953505_MANKEVICH.Data
                 context.CarGroups.AddRange(
                     new List<CarGroup>
                     {
-                        new CarGroup {GroupName = "Купе"},
-                        new CarGroup {GroupName = "Седан"},
-                        new CarGroup {GroupName = "Универсал"},
-                        new CarGroup {GroupName = "Кабриолет"},
-                        new CarGroup {GroupName = "Хэтчбек"}
+                        new() {GroupName = "Купе"},
+                        new() {GroupName = "Седан"},
+                        new() {GroupName = "Универсал"},
+                        new() {GroupName = "Кабриолет"},
+                        new() {GroupName = "Хэтчбек"}
                     });
                 await context.SaveChangesAsync();
             }

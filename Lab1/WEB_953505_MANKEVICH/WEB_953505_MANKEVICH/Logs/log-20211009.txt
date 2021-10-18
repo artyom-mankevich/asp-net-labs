@@ -17,3 +17,4 @@
 2021-10-09T19:51:28.5743900+03:00  [INF] info: group=, page=1 (85a87afb)
 2021-10-09T19:51:31.8825050+03:00  [INF] info: group=, page=1 (85a87afb)
 2021-10-09T19:51:32.9277688+03:00  [INF] info: group=1, page=1 (99316e1e)
+2021-10-09T20:42:09.5693376+03:00  [INF] Request /Product/UserProducts returns status code 404 (2690d79b)

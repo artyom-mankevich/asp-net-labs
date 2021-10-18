@@ -1,5 +1,3 @@
-using System;
-
 namespace WEB_953505_MANKEVICH.Models
 {
     public class ErrorViewModel

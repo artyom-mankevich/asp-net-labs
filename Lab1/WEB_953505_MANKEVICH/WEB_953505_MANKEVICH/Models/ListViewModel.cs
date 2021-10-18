@@ -6,15 +6,15 @@ namespace WEB_953505_MANKEVICH.Models
 {
     public class ListViewModel<T> : List<T> where T : class
     {
-        public int TotalPages { get; set; }
-        public int CurrentPage { get; set; }
-
         private ListViewModel(IEnumerable<T> items,
             int total, int current) : base(items)
         {
             TotalPages = total;
             CurrentPage = current;
         }
+
+        public int TotalPages { get; set; }
+        public int CurrentPage { get; set; }
 
         public static ListViewModel<T> GetModel(IEnumerable<T> list,
             int current, int itemsPerPage)

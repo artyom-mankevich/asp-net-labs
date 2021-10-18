@@ -7,7 +7,7 @@
         <h1>@(ViewData["lab2text"] as string)</h1>
         <h2>Список</h2>
         <ol type="A">
-            @for (int i = 1; i < 5; i++)
+            @for (var i = 1; i < 5; i++)
             {
                 <li>элемент @i списка</li>
             }

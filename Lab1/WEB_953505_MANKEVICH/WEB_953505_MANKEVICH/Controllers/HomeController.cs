@@ -20,8 +20,8 @@ namespace WEB_953505_MANKEVICH.Controllers
         {
             IEnumerable<ListDemo> list = new List<ListDemo>
             {
-                new ListDemo { ListItemText = "item 1", ListItemValue = 1},
-                new ListDemo { ListItemText = "item 2", ListItemValue = 2}
+                new() {ListItemText = "item 1", ListItemValue = 1},
+                new() {ListItemText = "item 2", ListItemValue = 2}
             };
             ViewBag.demoList = new SelectList(list, "ListItemValue", "ListItemText");
             ViewData["lab2text"] = "Лабораторная работа №2";

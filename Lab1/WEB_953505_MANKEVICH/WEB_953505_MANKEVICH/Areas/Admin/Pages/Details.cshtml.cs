@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,9 +9,9 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
 {
     public class DetailsModel : PageModel
     {
-        private readonly WEB_953505_MANKEVICH.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(WEB_953505_MANKEVICH.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -23,18 +20,12 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Car = await _context.Cars
                 .Include(c => c.Group).FirstOrDefaultAsync(m => m.CarId == id);
 
-            if (Car == null)
-            {
-                return NotFound();
-            }
+            if (Car == null) return NotFound();
             return Page();
         }
     }

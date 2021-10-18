@@ -3,37 +3,42 @@
 
 <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+<p>Current count: @_currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
-    private FormModel formModel;
+    private int _currentCount;
+    private FormModel _formModel;
+
     protected override void OnInitialized()
     {
-        formModel=new();
+        _formModel = new FormModel();
     }
+
     private void IncrementCount()
     {
-        currentCount++;
+        _currentCount++;
     }
+
     private void SetCounter()
     {
-        currentCount = formModel.NewValue;
+        _currentCount = _formModel.NewValue;
     }
+
     class FormModel
     {
         [DataType("int")]
-        [Range(0,int.MaxValue)]
+        [Range(0, int.MaxValue)]
         public int NewValue { get; set; }
     }
+
 }
 
-<EditForm Model="formModel" OnValidSubmit="SetCounter" >
+<EditForm Model="_formModel" OnValidSubmit="SetCounter">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
-    <InputNumber @bind-Value="formModel.NewValue"></InputNumber>
+    <InputNumber @bind-Value="_formModel.NewValue"></InputNumber>
 
     <input type="submit"
            class="btn btn-outline-info mt-2 mb-2"

@@ -6,12 +6,12 @@ namespace WEB_953505_MANKEVICH.Models
 {
     public class Cart
     {
-        public Dictionary<int, CartItem> Items { get; set; }
-
         public Cart()
         {
             Items = new Dictionary<int, CartItem>();
         }
+
+        public Dictionary<int, CartItem> Items { get; set; }
 
         public virtual int Count
         {
@@ -22,16 +22,12 @@ namespace WEB_953505_MANKEVICH.Models
         public virtual void AddToCart(Car car)
         {
             if (Items.ContainsKey(car.CarId))
-            {
                 Items[car.CarId].Quantity++;
-            }
             else
-            {
                 Items.Add(car.CarId, new CartItem
                 {
                     Car = car, Quantity = 1
                 });
-            }
         }
 
         public virtual void RemoveFromCart(int id)

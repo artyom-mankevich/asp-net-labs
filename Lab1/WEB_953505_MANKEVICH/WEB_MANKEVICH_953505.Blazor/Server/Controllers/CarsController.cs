@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WEB_953505_MANKEVICH.Data;
 using WEB_953505_MANKEVICH.Entities;
 
-namespace WEB_MANKEVICH_953505.Blazor.Server
+namespace WEB_MANKEVICH_953505.Blazor.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -36,10 +34,7 @@ namespace WEB_MANKEVICH_953505.Blazor.Server
         {
             var car = await _context.Cars.FindAsync(id);
 
-            if (car == null)
-            {
-                return NotFound();
-            }
+            if (car == null) return NotFound();
 
             return car;
         }
@@ -49,10 +44,7 @@ namespace WEB_MANKEVICH_953505.Blazor.Server
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCar(int id, Car car)
         {
-            if (id != car.CarId)
-            {
-                return BadRequest();
-            }
+            if (id != car.CarId) return BadRequest();
 
             _context.Entry(car).State = EntityState.Modified;
 
@@ -63,13 +55,8 @@ namespace WEB_MANKEVICH_953505.Blazor.Server
             catch (DbUpdateConcurrencyException)
             {
                 if (!CarExists(id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
@@ -83,7 +70,7 @@ namespace WEB_MANKEVICH_953505.Blazor.Server
             _context.Cars.Add(car);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCar", new { id = car.CarId }, car);
+            return CreatedAtAction("GetCar", new {id = car.CarId}, car);
         }
 
         // DELETE: api/Cars/5
@@ -91,10 +78,7 @@ namespace WEB_MANKEVICH_953505.Blazor.Server
         public async Task<IActionResult> DeleteCar(int id)
         {
             var car = await _context.Cars.FindAsync(id);
-            if (car == null)
-            {
-                return NotFound();
-            }
+            if (car == null) return NotFound();
 
             _context.Cars.Remove(car);
             await _context.SaveChangesAsync();

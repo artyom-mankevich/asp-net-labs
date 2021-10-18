@@ -6,8 +6,8 @@ namespace WEB_953505_MANKEVICH.Middleware
 {
     public class LogMiddleware
     {
-        RequestDelegate _next;
-        ILogger<LogMiddleware> _logger;
+        private readonly ILogger<LogMiddleware> _logger;
+        private readonly RequestDelegate _next;
 
         public LogMiddleware(RequestDelegate next,
             ILogger<LogMiddleware> logger)

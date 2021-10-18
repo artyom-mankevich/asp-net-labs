@@ -1,22 +1,15 @@
-using System;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WEB_953505_MANKEVICH.Data;
-using WEB_953505_MANKEVICH.Entities;
+using WEB_953505_MANKEVICH.Areas.Identity;
 
-[assembly: HostingStartup(typeof(WEB_953505_MANKEVICH.Areas.Identity.IdentityHostingStartup))]
+[assembly: HostingStartup(typeof(IdentityHostingStartup))]
+
 namespace WEB_953505_MANKEVICH.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-            });
+            builder.ConfigureServices((context, services) => { });
         }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,8 +12,8 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
 {
     public class CreateModel : PageModel
     {
-        private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _environment;
 
         public CreateModel(ApplicationDbContext context, IWebHostEnvironment env)
         {
@@ -24,22 +21,19 @@ namespace WEB_953505_MANKEVICH.Areas.Admin.Pages
             _environment = env;
         }
 
+        [BindProperty] public Car Car { get; set; }
+        [BindProperty] public IFormFile Image { get; set; }
+
         public IActionResult OnGet()
         {
             ViewData["CarGroupId"] = new SelectList(_context.CarGroups, "CarGroupId", "GroupName");
             return Page();
         }
 
-        [BindProperty] public Car Car { get; set; }
-        [BindProperty] public IFormFile Image { get; set; }
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Cars.Add(Car);
             await _context.SaveChangesAsync();

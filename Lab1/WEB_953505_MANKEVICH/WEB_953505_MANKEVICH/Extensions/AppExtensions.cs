@@ -7,6 +7,8 @@ namespace WEB_953505_MANKEVICH.Extensions
     {
         public static IApplicationBuilder UseFileLogging(this
             IApplicationBuilder app)
-            => app.UseMiddleware<LogMiddleware>();
+        {
+            return app.UseMiddleware<LogMiddleware>();
+        }
     }
 }

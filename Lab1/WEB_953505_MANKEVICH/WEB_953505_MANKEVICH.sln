@@ -1,6 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_953505_MANKEVICH", "WEB_953505_MANKEVICH\WEB_953505_MANKEVICH.csproj", "{0FD78275-4631-4179-9ABC-0DB69DB56975}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_953505_MANKEVICH", "WEB_953505_MANKEVICH\WEB_953505_MANKEVICH.csproj", "{0FD78275-4631-4179-9ABC-0DB69DB56975}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_MANKEVICH_953505.Blazor.Server", "WEB_MANKEVICH_953505.Blazor\Server\WEB_MANKEVICH_953505.Blazor.Server.csproj", "{00690F6E-7582-434C-8E75-0441B77E5EB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_MANKEVICH_953505.Blazor.Client", "WEB_MANKEVICH_953505.Blazor\Client\WEB_MANKEVICH_953505.Blazor.Client.csproj", "{82EB4D62-109C-4B62-BE23-155497B14A6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_MANKEVICH_953505.Blazor.Shared", "WEB_MANKEVICH_953505.Blazor\Shared\WEB_MANKEVICH_953505.Blazor.Shared.csproj", "{ACE781F8-9F64-44C2-94F4-FACC6AF838BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +21,23 @@ Global
 		{0FD78275-4631-4179-9ABC-0DB69DB56975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD78275-4631-4179-9ABC-0DB69DB56975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD78275-4631-4179-9ABC-0DB69DB56975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00690F6E-7582-434C-8E75-0441B77E5EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00690F6E-7582-434C-8E75-0441B77E5EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00690F6E-7582-434C-8E75-0441B77E5EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00690F6E-7582-434C-8E75-0441B77E5EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EB4D62-109C-4B62-BE23-155497B14A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EB4D62-109C-4B62-BE23-155497B14A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EB4D62-109C-4B62-BE23-155497B14A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EB4D62-109C-4B62-BE23-155497B14A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE781F8-9F64-44C2-94F4-FACC6AF838BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE781F8-9F64-44C2-94F4-FACC6AF838BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE781F8-9F64-44C2-94F4-FACC6AF838BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE781F8-9F64-44C2-94F4-FACC6AF838BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9E93B6F-4062-413E-8AB1-313F6742E695}
 	EndGlobalSection
 EndGlobal

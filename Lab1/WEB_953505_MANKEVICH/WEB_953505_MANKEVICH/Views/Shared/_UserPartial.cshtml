@@ -28,11 +28,6 @@
                 }
             </li>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-item">
-                <a asp-controller="Product" asp-action="UserProducts">
-                    Мои товары
-                </a>
-            </li>
             <form class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout"
                   asp-route-returnurl="@ViewContext.HttpContext.Request.Path">
                 <input type="submit" value="Log off"/>

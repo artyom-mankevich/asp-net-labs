@@ -24,6 +24,7 @@ namespace WEB_953505_MANKEVICH
                 {
                     lp.ClearProviders();
                     lp.AddFilter("Microsoft", LogLevel.None);
+                    lp.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None);
                 });
         }
     }

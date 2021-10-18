@@ -38,5 +38,19 @@ namespace WEB_953505_MANKEVICH.Controllers
 
             return Redirect(returnUrl);
         }
+
+        public IActionResult Delete(int id, string returnUrl)
+        {
+            _cart = HttpContext.Session.Get<Cart>(cartKey);
+            
+            var item = _context.Cars.Find(id);
+            if (item != null)
+            {
+                _cart.RemoveFromCart(id);
+                HttpContext.Session.Set<Cart>(cartKey, _cart);
+            }
+
+            return Redirect(returnUrl);
+        }
     }
 }

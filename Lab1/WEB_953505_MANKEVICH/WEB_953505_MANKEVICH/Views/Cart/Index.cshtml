@@ -34,9 +34,15 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
+                @{
+                    var request = ViewContext.HttpContext.Request;
+                    var returnUrl = request.Path +
+                                    request.QueryString.ToUriComponent();
+                }
                 <a asp-controller="Cart"
                    asp-action="Delete"
                    asp-route-id="@item.Car.CarId"
+                   asp-route-returnUrl="@returnUrl"
                    class="btn btn-outline-danger">
                     <i class="fas fa-trash-alt"></i>
                 </a>
